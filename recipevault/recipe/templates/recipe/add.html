@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="{% static 'recipe/assets/bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'recipe/assets/css/styles.min.css' %}">
 </head>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-dismissible fade show {{ message.tags }}" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
 <body class="text-center" style="background: rgb(33,37,41);">
     <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark py-3" style="border-style: groove;border-color: rgb(33,91,123);border-top-style: none;border-right-style: none;border-bottom-style: dashed;border-left-style: none;">
         <div class="container"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon" style="background: rgb(33,91,123);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor">
