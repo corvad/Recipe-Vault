@@ -15,3 +15,7 @@ def add(request):
             messages.error(request, ("Failed to add recipe, try again."))
     form = RecipeForm()
     return render(request, "add.html", {'form': form})
+
+
+def index(request):
+    return render(request, "index.html")
