@@ -2,7 +2,9 @@ from django.urls import reverse
 from django.utils.html import format_html
 from .forms import RecipeForm
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
+from .models import Recipe
 
 
 # Create your views here.
@@ -26,3 +28,18 @@ def index(request):
 
 def view(request, rid):
     return render(request, "{rid}")
+
+
+def edit(request, rid):
+    obj = get_object_or_404(Recipe, id=rid)
+    if request.method == "POST":
+        form = RecipeForm(request.POST, request.FILES, instance=obj)
+        if form.is_valid():
+            temp = form.save()
+            ht = "/view/" + str(temp.id)
+            temp2 = format_html('Edited recipe. <a href="{}">View Here</a>', ht)
+            messages.success(request, temp2)
+        else:
+            messages.error(request, ("Failed to edit recipe, try again."))
+    form = RecipeForm()
+    return render(request, "recipe/edit.html", {'form': form})
