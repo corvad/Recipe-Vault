@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from django.contrib import messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +28,6 @@ SECRET_KEY = 'django-insecure-nnyv==@c9^46+x9d%sau(5=-#7b#e33=kdeb!cg=ad4b=z^gi4
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
