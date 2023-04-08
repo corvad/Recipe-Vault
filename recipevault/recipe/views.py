@@ -13,7 +13,7 @@ def add(request):
             temp = form.save()
             ht = "/view/" + str(temp.id)
             temp2 = format_html('Added recipe. <a href="{}">View Here</a>', reverse(ht))
-            messages.success(request, ("Added recipe."+ht))
+            messages.success(request, ht)
         else:
             messages.error(request, ("Failed to add recipe, try again."))
     form = RecipeForm()
