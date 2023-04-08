@@ -1,4 +1,17 @@
-from django.shortcuts import render
 from .forms import RecipeForm
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
+def add(request):
+    if request.method == "POST":
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ("Added recipe."))
+            return redirect("recipe:index")
+        else:
+            messages.error(request, ("Failed to add recipe, try again."))
+    form = RecipeForm()
+    return render(request, "add.html", {'form': form})
