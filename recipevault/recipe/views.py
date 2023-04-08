@@ -12,7 +12,7 @@ def add(request):
         if form.is_valid():
             temp = form.save()
             ht = "/view/" + str(temp.id)
-            temp2 = format_html('Added recipe. <a href="{}">View Here</a>', reverse(ht))
+            temp2 = format_html('Added recipe. <a href="{}">View Here</a>', ht)
             messages.success(request, temp2)
         else:
             messages.error(request, ("Failed to add recipe, try again."))
@@ -22,3 +22,7 @@ def add(request):
 
 def index(request):
     return render(request, "index.html")
+
+
+def view(request, rid):
+    return render(request, "{rid}")
