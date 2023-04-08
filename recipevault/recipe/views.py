@@ -10,7 +10,7 @@ def add(request):
         if form.is_valid():
             form.save()
             messages.success(request, ("Added recipe."))
-            return redirect("recipe:index")
+            return redirect("/")
         else:
             messages.error(request, ("Failed to add recipe, try again."))
     form = RecipeForm()
