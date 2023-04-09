@@ -39,6 +39,12 @@
             </div>
         </nav>
     </form>
+    <form class="text-center justify-content-center" style="color: rgb(126,142,159);width: auto;margin-top: 15px" method="GET">
+        <div>
+            <input class="form-control" type="text" style="max-width: 666px;" name="search" required="">
+            <input class="btn btn-primary" type="submit" value="Search" style="margin-top: 21px;margin-bottom: 12px;border-style: none;background: var(--bs-primary);">
+        </div>
+    </form>
     <div class="container py-4 py-xl-5">
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
             {% for obj in recipes %}
@@ -58,8 +64,6 @@
                         </div>
                     </div>
                 </a>
-            {% empty %}
-                <h4 style="color: rgb(33,91,123);">Not Found</h4>
             {% endfor %}
         </div>
     </div>
