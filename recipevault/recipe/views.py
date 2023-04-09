@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.html import format_html
 from .forms import RecipeForm
 from django.contrib import messages
@@ -22,11 +23,21 @@ def add(request):
 
 
 def index(request):
-    return render(request, "index.html")
+    recipes = Recipe.objects.all()
+    pages = Paginator(recipes, 9)
+    page = request.GET.get('page')
+    try:
+        recipes2 = pages.page(page)
+    except PageNotAnInteger:
+        recipes2 = pages.page(1)
+    except EmptyPage:
+        recipes2 = pages.page(pages.num_pages)
+    return render(request, "recipe/index.html", {'recipes': recipes})
 
 
 def view(request, rid):
-    return render(request, "{rid}")
+    obj = get_object_or_404(Recipe, id=rid)
+    return render(request, "recipe/view.html", {'obj': obj})
 
 
 def edit(request, rid):

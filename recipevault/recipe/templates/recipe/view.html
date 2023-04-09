@@ -38,31 +38,36 @@
                 </div>
             </div>
         </nav>
-        <h1 class="text-center" style="margin-top: 20px;"><span style="color: rgb(33, 91, 123);">Edit Recipe</span></h1>
     </form>
     <footer class="text-center bg-dark"></footer>
     <div class="card text-center" style="border-style: none;border-top-color: rgb(33,91,123);">
-        <div class="card-body text-center d-flex align-content-center justify-content-xxl-center" style="background: #212529;border-style: none;border-top-color: var(--bs-primary);border-bottom-style: none;">
-            <form class="text-center flex-grow-1 flex-shrink-1 justify-content-center" style="color: rgb(126,142,159);width: auto;" method="post" enctype="multipart/form-data">{% csrf_token %}<label class="form-label" style="color: rgb(33,91,123);font-size: 21px;">Name</label><input class="form-control d-sm-flex" type="text" style="max-width: 306px;" name="name" value="{{ obj.name }}" required=""><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;margin-top: 20px;">Current Photo</label><br><img class="d-sm-flex rounded" src="{{ obj.photo.url }}" style="max-width: 308px; margin: auto;"><br><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;margin-top: 5px;">Change Photo</label><input class="form-control" type="file" style="margin: auto;max-width: 308px;" accept="image/*" name="photo"><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Rating</label><select class="form-select" id="s" required="" style="margin: auto;max-width: 70px;" name="rating">
-                    <option value="5" selected="">5</option>
-                    <option value="4" selected="">4</option>
-                    <option value="5" selected="">3</option>
-                    <option value="2" selected="">2</option>
-                    <option value="1" selected="">1</option>
-                </select><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Description</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 150px;" required="" name="description">{{ obj.description }}</textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Ingredients</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 300px;" name="ingredients" required="">{{ obj.ingredients }}</textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Directions</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 350px;" name="directions" required="">{{ obj.directions }}</textarea><input class="btn btn-primary" type="submit" style="margin-top: 21px;margin-bottom: 12px;border-style: none;background: var(--bs-primary);"></form>
+        <div class="card-body text-center align-content-center justify-content-xxl-center" style="background: #212529;border-style: none;border-top-color: var(--bs-primary);border-bottom-style: none;">
+            <h1 class="text-center" style="margin-top: 10px;font-size: 44px;"><span style="color: rgb(33, 91, 123);">{{ obj.name }}</span></h1>
+            <section class="text-center py-4 py-xl-5">
+                <div class="container">
+                    <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
+                        <img class="d-sm-flex rounded" src="{{ obj.photo.url }}" style="max-width: 666px; margin: auto;">
+                    </div>
+                </div>
+                <div class="text-white d-md-flex d-lg-flex d-xl-flex" style="max-width: 666px;margin: auto;padding: 10px;padding-bottom: 0px">
+                    <div class="col-md-6">
+                        <h2 class="fw-bold mb-3" style="color: rgb(33,91,123);">Description:</h2>
+                        <p class="mb-4" style="font-size: 19px;color: rgb(238,238,238);white-space: pre-wrap;">{{ obj.description }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="fw-bold mb-3" style="color: rgb(33,91,123);">Rating:</h2>
+                        <p class="mb-4" style="font-size: 39px;color: rgb(238,238,238);">{{ obj.rating }}</p>
+                    </div>
+                </div>
+                <a class="btn btn-primary" role="button" style="font-size: 20px;background: rgb(33,91,123);border-style: none;" href="/edit/{{ obj.id }}">Edit</a>
+                <h1 style="color: rgb(33,91,123);margin-top: 40px;font-size: 44px;">Ingredients</h1>
+                <p class="text-start d-xxl-flex" style="font-size: 22px;color: rgb(255,255,255);max-width: 666px;margin: auto;white-space: pre-wrap;">{{ obj.ingredients }}</p>
+                <h1 style="color: rgb(33,91,123);margin-top: 30px;font-size: 44px;">Directions</h1>
+                <p class="text-start d-xxl-flex" style="font-size: 22px;color: rgb(255,255,255);max-width: 666px;margin: auto;white-space: pre-wrap;">{{ obj.directions }}</p>
+            </section>
         </div>
     </div>
     <script src="{% static 'recipe/assets/bootstrap/js/bootstrap.js' %}"></script>
-    <script>
-    var rating = {{ obj.rating }};
-    var select1 = document.getElementById('s');
-    for(var x, y = 0; x = select1.options[y]; y++) {
-        if(x.value == rating) {
-            select1.selectedIndex = y;
-            break;
-        }
-    }
-    </script>
 </body>
 
 </html>

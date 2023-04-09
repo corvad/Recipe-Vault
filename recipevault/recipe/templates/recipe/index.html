@@ -38,31 +38,41 @@
                 </div>
             </div>
         </nav>
-        <h1 class="text-center" style="margin-top: 20px;"><span style="color: rgb(33, 91, 123);">Edit Recipe</span></h1>
     </form>
-    <footer class="text-center bg-dark"></footer>
-    <div class="card text-center" style="border-style: none;border-top-color: rgb(33,91,123);">
-        <div class="card-body text-center d-flex align-content-center justify-content-xxl-center" style="background: #212529;border-style: none;border-top-color: var(--bs-primary);border-bottom-style: none;">
-            <form class="text-center flex-grow-1 flex-shrink-1 justify-content-center" style="color: rgb(126,142,159);width: auto;" method="post" enctype="multipart/form-data">{% csrf_token %}<label class="form-label" style="color: rgb(33,91,123);font-size: 21px;">Name</label><input class="form-control d-sm-flex" type="text" style="max-width: 306px;" name="name" value="{{ obj.name }}" required=""><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;margin-top: 20px;">Current Photo</label><br><img class="d-sm-flex rounded" src="{{ obj.photo.url }}" style="max-width: 308px; margin: auto;"><br><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;margin-top: 5px;">Change Photo</label><input class="form-control" type="file" style="margin: auto;max-width: 308px;" accept="image/*" name="photo"><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Rating</label><select class="form-select" id="s" required="" style="margin: auto;max-width: 70px;" name="rating">
-                    <option value="5" selected="">5</option>
-                    <option value="4" selected="">4</option>
-                    <option value="5" selected="">3</option>
-                    <option value="2" selected="">2</option>
-                    <option value="1" selected="">1</option>
-                </select><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Description</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 150px;" required="" name="description">{{ obj.description }}</textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Ingredients</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 300px;" name="ingredients" required="">{{ obj.ingredients }}</textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Directions</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 350px;" name="directions" required="">{{ obj.directions }}</textarea><input class="btn btn-primary" type="submit" style="margin-top: 21px;margin-bottom: 12px;border-style: none;background: var(--bs-primary);"></form>
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            {% for obj in recipes %}
+                <a href="/view/{{ obj.id }}" class="text-decoration-none">
+                    <div class="col">
+                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-color: rgb(33,91,123);" src="{{ obj.photo.url }}">
+                            <div class="card-body p-4" style="border-style: solid;border-color: rgb(33,91,123);background: #212529;">
+                                <h4 class="card-title" style="color: rgb(33,91,123);">{{ obj.name }}</h4>
+                                <p class="card-text" style="color: rgb(255,255,255);white-space: pre-wrap;">{{ obj.description }}</p>
+                                <div class="d-flex justify-content-center justify-content-xxl-center">
+                                    <div>
+                                        <p class="fw-bold mb-0" style="color: rgb(33,91,123);">Rating:&nbsp;</p>
+                                    </div>
+                                    <p class="mb-0" style="color: rgb(255,255,255);font-size: 17px;">{{ obj.rating }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
     </div>
-    <script src="{% static 'recipe/assets/bootstrap/js/bootstrap.js' %}"></script>
-    <script>
-    var rating = {{ obj.rating }};
-    var select1 = document.getElementById('s');
-    for(var x, y = 0; x = select1.options[y]; y++) {
-        if(x.value == rating) {
-            select1.selectedIndex = y;
-            break;
-        }
-    }
-    </script>
+    {% if recipes.has_other_pages %}
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    {% endif %}
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
