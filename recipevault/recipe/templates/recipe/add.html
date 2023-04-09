@@ -30,9 +30,9 @@
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
-                    </ul><a class="btn btn-primary" role="button" style="border-color: rgb(33,91,123);background: rgb(33,91,123);margin-right: 5px;" href="search"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-search" style="font-size: 24px;">
+                    </ul><a class="btn btn-primary" role="button" style="border-color: rgb(33,91,123);background: rgb(33,91,123);margin-right: 5px;" href="/search"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-search" style="font-size: 24px;">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                        </svg></a><a class="btn btn-primary ms-md-2" role="button" href="add" style="background: rgb(33,91,123);border-color: rgb(33,91,123);margin-left: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="font-size: 25px;">
+                        </svg></a><a class="btn btn-primary ms-md-2" role="button" href="/add" style="background: rgb(33,91,123);border-color: rgb(33,91,123);margin-left: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="font-size: 25px;">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
                         </svg></a>
                 </div>
@@ -43,7 +43,7 @@
     <footer class="text-center bg-dark"></footer>
     <div class="card text-center" style="border-style: none;border-top-color: rgb(33,91,123);">
         <div class="card-body text-center d-flex align-content-center justify-content-xxl-center" style="background: #212529;border-style: none;border-top-color: var(--bs-primary);border-bottom-style: none;">
-            <form class="text-center flex-grow-1 flex-shrink-1 justify-content-center" style="color: rgb(126,142,159);width: auto;" method="post" enctype="multipart/form-data" action="/add/">{% csrf_token %}<label class="form-label" style="color: rgb(33,91,123);font-size: 21px;">Name</label><input class="form-control d-sm-flex" type="text" style="max-width: 306px;" name="name" required=""><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Photo</label><input class="form-control" type="file" style="margin: auto;max-width: 308px;" required="" accept="image/*" name="photo"><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Rating</label><select class="form-select" required="" style="margin: auto;max-width: 70px;" name="rating">
+            <form class="text-center flex-grow-1 flex-shrink-1 justify-content-center" style="color: rgb(126,142,159);width: auto;" method="post" enctype="multipart/form-data">{% csrf_token %}<label class="form-label" style="color: rgb(33,91,123);font-size: 21px;">Name</label><input class="form-control d-sm-flex" type="text" style="max-width: 306px;" name="name" required=""><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Photo</label><input class="form-control" type="file" style="margin: auto;max-width: 308px;" required="" accept="image/*" name="photo"><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Rating</label><select class="form-select" required="" style="margin: auto;max-width: 70px;" name="rating">
                     <option value="5" selected="">5</option>
                     <option value="4" selected="">4</option>
                     <option value="5" selected="">3</option>

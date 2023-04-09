@@ -1,8 +1,7 @@
-from django.urls import reverse
 from django.utils.html import format_html
 from .forms import RecipeForm
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 
 from .models import Recipe
 
@@ -41,5 +40,5 @@ def edit(request, rid):
             messages.success(request, temp2)
         else:
             messages.error(request, ("Failed to edit recipe, try again."))
-    form = RecipeForm()
-    return render(request, "recipe/edit.html", {'form': form})
+    form = RecipeForm(instance=obj)
+    return render(request, "recipe/edit.html", {'form': form, 'obj': obj})

@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="{% static 'recipe/assets/bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'recipe/assets/css/styles.min.css' %}">
 </head>
-
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-dismissible fade show {{ message.tags }}" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
 <body class="text-center" style="background: rgb(33,37,41);">
     <form>
         <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3" style="border-style: dotted;border-color: rgb(33,91,123);border-top-style: none;border-right-style: none;border-bottom-style: dashed;border-bottom-color: rgb(33,91,123);border-left-style: none;">
@@ -23,9 +30,9 @@
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
-                    </ul><a class="btn btn-primary" role="button" style="border-color: rgb(33,91,123);background: rgb(33,91,123);margin-right: 5px;" href="search"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-search" style="font-size: 24px;">
+                    </ul><a class="btn btn-primary" role="button" style="border-color: rgb(33,91,123);background: rgb(33,91,123);margin-right: 5px;" href="/search"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-search" style="font-size: 24px;">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                        </svg></a><a class="btn btn-primary ms-md-2" role="button" href="add" style="background: rgb(33,91,123);border-color: rgb(33,91,123);margin-left: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="font-size: 25px;">
+                        </svg></a><a class="btn btn-primary ms-md-2" role="button" href="/add" style="background: rgb(33,91,123);border-color: rgb(33,91,123);margin-left: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-lg" style="font-size: 25px;">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
                         </svg></a>
                 </div>
@@ -36,16 +43,26 @@
     <footer class="text-center bg-dark"></footer>
     <div class="card text-center" style="border-style: none;border-top-color: rgb(33,91,123);">
         <div class="card-body text-center d-flex align-content-center justify-content-xxl-center" style="background: #212529;border-style: none;border-top-color: var(--bs-primary);border-bottom-style: none;">
-            <form class="text-center flex-grow-1 flex-shrink-1 justify-content-center" style="color: rgb(126,142,159);width: auto;" method="post" enctype="multipart/form-data" action="/add/">{% csrf_token %}<label class="form-label" style="color: rgb(33,91,123);font-size: 21px;">Name</label><input class="form-control d-sm-flex" type="text" style="max-width: 306px;" name="name" required=""><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Photo</label><input class="form-control" type="file" style="margin: auto;max-width: 308px;" required="" accept="image/*" name="photo"><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Rating</label><select class="form-select" required="" style="margin: auto;max-width: 70px;" name="rating">
+            <form class="text-center flex-grow-1 flex-shrink-1 justify-content-center" style="color: rgb(126,142,159);width: auto;" method="post" enctype="multipart/form-data">{% csrf_token %}<label class="form-label" style="color: rgb(33,91,123);font-size: 21px;">Name</label><input class="form-control d-sm-flex" type="text" style="max-width: 306px;" name="name" value="{{ obj.name }}" required=""><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;margin-top: 20px;">Current Photo</label><br><img class="d-sm-flex" src="{{ obj.photo.url }}" style="max-width: 308px; margin: auto;border-radius: 5%;"><br><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Change Photo</label><input class="form-control" type="file" style="margin: auto;max-width: 308px;margin-top: 10px;" accept="image/*" name="photo"><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Rating</label><select class="form-select" id="s" required="" style="margin: auto;max-width: 70px;" name="rating">
                     <option value="5" selected="">5</option>
                     <option value="4" selected="">4</option>
                     <option value="5" selected="">3</option>
                     <option value="2" selected="">2</option>
                     <option value="1" selected="">1</option>
-                </select><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Description</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 150px;" required="" name="description"></textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Ingredients</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 300px;" name="ingredients" required=""></textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Directions</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 350px;" name="directions" required=""></textarea><input class="btn btn-primary" type="submit" style="margin-top: 21px;margin-bottom: 12px;border-style: none;background: var(--bs-primary);"></form>
+                </select><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Description</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 150px;" required="" name="description">{{ obj.description }}</textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Ingredients</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 300px;" name="ingredients" required="">{{ obj.ingredients }}</textarea><label class="form-label" style="color: rgb(33,91,123);font-size: 21px;padding-top: 20px;">Directions</label><textarea class="form-control" style="margin: auto;max-width: 666px;height: 350px;" name="directions" required="">{{ obj.directions }}</textarea><input class="btn btn-primary" type="submit" style="margin-top: 21px;margin-bottom: 12px;border-style: none;background: var(--bs-primary);"></form>
         </div>
     </div>
     <script src="{% static 'recipe/assets/bootstrap/js/bootstrap.js' %}"></script>
+    <script>
+    var rating = {{ obj.rating }};
+    var select1 = document.getElementById('s');
+    for(var x, y = 0; x = select1.options[y]; y++) {
+        if(x.value == rating) {
+            select1.selectedIndex = y;
+            break;
+        }
+    }
+    </script>
 </body>
 
 </html>
