@@ -23,9 +23,9 @@ def add(request):
 
 
 def index(request):
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.all().order_by('id')
     pages = Paginator(recipes, 9)
-    page = request.GET.get('page')
+    page = request.GET.get('page', 1)
     try:
         recipes2 = pages.page(page)
     except PageNotAnInteger:
