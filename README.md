@@ -13,8 +13,7 @@
 2. cd into recipevault
 3. run <code>python manage.py makemigrations</code>
 4. run <code>python manage.py migrate</code>
-5. run <code>python manage.py createsuperuser  
-</code>
+5. run <code>python manage.py createsuperuser</code>
 6. run  <code>python manage.py runserver</code>
 7. You're all set :)
 
