@@ -1,5 +1,8 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.utils.html import format_html
+from django.views.generic import ListView
+
 from .forms import RecipeForm
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
@@ -53,3 +56,19 @@ def edit(request, rid):
             messages.error(request, ("Failed to edit recipe, try again."))
     form = RecipeForm(instance=obj)
     return render(request, "recipe/edit.html", {'form': form, 'obj': obj})
+
+def search(request):
+    keyword = request.GET.get('search')
+    recipes = Recipe.objects.filter(
+        Q(name__icontains=keyword) | Q(description__icontains=keyword)
+        | Q(ingredients__icontains=keyword) | Q(directions__icontains=keyword)
+    )
+    pages = Paginator(recipes, 9)
+    page = request.GET.get('page', 1)
+    try:
+        recipes2 = pages.page(page)
+    except PageNotAnInteger:
+        recipes2 = pages.page(1)
+    except EmptyPage:
+        recipes2 = pages.page(pages.num_pages)
+    return render(request, "recipe/search.html", {'recipes': recipes})
