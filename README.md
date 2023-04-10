@@ -8,9 +8,9 @@
 
 #### https://organize.mlh.io/participants/events/9350-bon-hacketit
 
-#### Update
+# Update
 
-I won the Grandma's Kitchen Award. :) The Devpost submission is here: https://devpost.com/software/recipe-vault-unp73h
+## I won the Grandma's Kitchen Award. :) The Devpost submission is here: https://devpost.com/software/recipe-vault-unp73h
 
 ## Install
 1. Clone the repo.
