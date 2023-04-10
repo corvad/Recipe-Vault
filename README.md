@@ -8,14 +8,20 @@
 
 #### https://organize.mlh.io/participants/events/9350-bon-hacketit
 
+#### Update
+
+I won the Grandma's Kitchen Award. :) The Devpost submission is here: https://devpost.com/software/recipe-vault-unp73h
+
 ## Install
 1. Clone the repo.
-2. cd into recipevault
-3. run <code>python manage.py makemigrations</code>
-4. run <code>python manage.py migrate</code>
-5. run <code>python manage.py createsuperuser</code>
-6. run  <code>python manage.py runserver</code>
-7. You're all set :)
+2. cd into Recipe-Vault
+3. run <code>pip3 install -r requirements.txt</code>
+4. cd into recipevault
+5. run <code>python manage.py makemigrations</code>
+6. run <code>python manage.py migrate</code>
+7. run <code>python manage.py createsuperuser</code>
+8. run <code>python manage.py runserver</code>
+9. You're all set :)
 
 ## Video
 https://youtu.be/0Xq3HhWJEeE
