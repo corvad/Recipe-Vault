@@ -44,7 +44,7 @@
             {% for obj in recipes %}
                 <a href="/view/{{ obj.id }}" class="text-decoration-none">
                     <div class="col">
-                        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-color: rgb(33,91,123);" src="{{ obj.photo.url }}">
+                        <div class="card"><img class="card-img d-block" style="width: 100; height: 250px; object-fit: cover; border-color: rgb(33,91,123);" src="{{ obj.photo.url }}">
                             <div class="card-body p-4" style="border-style: solid;border-color: rgb(33,91,123);background: #212529;">
                                 <h4 class="card-title" style="color: rgb(33,91,123);">{{ obj.name }}</h4>
                                 <p class="card-text" style="color: rgb(255,255,255);white-space: pre-wrap;">{{ obj.description }}</p>
