@@ -15,13 +15,14 @@
 ## Install
 1. Clone the repo.
 2. cd into Recipe-Vault
-3. run <code>pip3 install -r requirements.txt</code>
+3. run <code>pip install -r requirements.txt</code>
 4. cd into recipevault
-5. run <code>python manage.py makemigrations</code>
-6. run <code>python manage.py migrate</code>
-7. run <code>python manage.py createsuperuser</code>
-8. run <code>python manage.py runserver</code>
-9. You're all set :)
+5. Change the secret key in settings.py to something random.
+6. run <code>python manage.py makemigrations</code>
+7. run <code>python manage.py migrate</code>
+8. run <code>python manage.py createsuperuser</code>
+9. run <code>python manage.py runserver</code>
+10. You're all set :)
 
 ## Video
 https://youtu.be/0Xq3HhWJEeE
