@@ -15,7 +15,7 @@
 ## Install
 1. Clone the repo.
 2. cd into Recipe-Vault
-3. run <code>pip3 install -r requirements.txt</code>
+3. run <code>pip install -r requirements.txt</code>
 4. cd into recipevault
 5. Change the secret key in settings.py to something random.
 6. run <code>python manage.py makemigrations</code>
